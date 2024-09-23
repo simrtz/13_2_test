@@ -1,0 +1,64 @@
+name: test_pipeline
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  setup:
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: setup
+      run: echo "hallo"
+
+  linter:
+    needs: setup
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Run Linter
+      run: echo "hallo"
+
+  testing:
+    needs: setup
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Run Tests
+        run: echo "hallo"
+
+  check-configuration:
+    needs: setup
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Check Configuration
+      run: echo "hallo"
+
+  update-docs:
+    needs: setup
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Rpdate Docs
+      run: echo "hallo"
+
+  build-deployment-artifact:
+    needs: [linter, testing, check-configuration, update-docs]
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Build Deployment Artifact
+      run: echo "hallo"
+
+  deploy-to-server:
+    needs: build-deployment-artifact
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Deploy to Server
+      run: echo "hallo"    
